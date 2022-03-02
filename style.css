@@ -12,6 +12,7 @@ body {
   
   svg {
     background-color: white;
+    border: solid 1px;
   }
   
   rect:hover {
