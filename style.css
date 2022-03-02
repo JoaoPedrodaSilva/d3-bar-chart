@@ -1,10 +1,13 @@
+body {  
+  background-color: lightblue; 
+}
+
 #container {  
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    background-color: lightblue;  
+    align-items: center; 
   }
   
   svg {
