@@ -59,6 +59,8 @@ function main(dataSet) {
         tooltip.classList.add('show')
         tooltip.innerHTML = `${d[0]} <br> U$ ${d[1]} billions`
         tooltip.setAttribute('data-date', d[0])
+        tooltip.style.left = e.pageX - 150 + 'px'
+        tooltip.style.top = e.pageY - 100 + 'px'
       })
       .on('mouseout', () => tooltip.classList.remove('show'))
 }
