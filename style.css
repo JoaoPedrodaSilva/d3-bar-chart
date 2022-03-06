@@ -1,5 +1,5 @@
 body {  
-  background-color: lightblue; 
+  background-color: white;
 }
 
 #container {  
@@ -7,30 +7,25 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
-  }
-  
-  svg {
-    background-color: white;
-    border: solid 1px;
-  }
-  
-  rect:hover {
-    fill: grey;
-  }
-  
-  #tooltip {
-    position: absolute;
-    padding: 20px;
-    border-radius: 10%;
-    background-color: lightgrey;
-    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
-    display: none;
     align-items: center;
-    justify-content: center;  
-    text-align: center;
   }
-  
-  #tooltip.show {
-    display: flex;
-  }
+
+rect:hover {
+  fill: grey;
+}
+
+#tooltip {
+  position: absolute;
+  padding: 20px;
+  border-radius: 10%;
+  background-color: lightgrey;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;  
+  text-align: center;
+}
+
+#tooltip.show {
+  display: flex;
+}
