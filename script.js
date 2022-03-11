@@ -9,7 +9,7 @@ req.send()
 
 function main(dataSet) {
 
-  const w = 800
+  const w = 700
   const h = 600
   const pad = 40
   const barWidth = (w - 2 * pad) / dataSet.length
