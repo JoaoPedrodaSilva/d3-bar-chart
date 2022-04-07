@@ -43,7 +43,7 @@ function main(dataSet) {
 
   d3.select('svg')
   .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 600 520")
+  .attr("viewBox", `0 0 ${w} ${h}`)
   .classed("svg-content", true)
     .selectAll('rect')
     .data(dataSet)

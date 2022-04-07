@@ -46,14 +46,14 @@ body {
   line-height: 3rem;
   display: none;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   text-align: center;
 }
   .tooltip.show {
     display: flex;
   }
 
-  @media (max-width: 1024px) {
+@media (max-width: 1024px) {
     .iframe-container {
         width: 560px;
         height: 560px;
