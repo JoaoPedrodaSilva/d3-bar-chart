@@ -9,12 +9,12 @@ req.send()
 
 function main(dataSet) {
 
-  const w = 700
-  const h = 600
-  const pad = 40
+  const w = 600
+  const h = 520
+  const pad = 60
   const barWidth = (w - 2 * pad) / dataSet.length
   const convertedDates = dataSet.map(d => new Date(d[0]))
-  const tooltip = document.querySelector('#tooltip')
+  const tooltip = document.querySelector('.tooltip')
 
   const xBarsScale = d3.scaleLinear()
                         .domain([0, dataSet.length - 1])
@@ -32,40 +32,59 @@ function main(dataSet) {
   const xAxis = d3.axisBottom(xAxisScale)
   d3.select('svg')
     .append('g')
-    .attr('id', 'x-axis')
     .attr('transform', 'translate(0, ' + (h - pad) + ')')
     .call(xAxis)
 
   const yAxis = d3.axisLeft(yAxisScale)
   d3.select('svg')
     .append('g')
-    .attr('id', 'y-axis')
     .attr('transform', 'translate(' + (pad) + ',0)')
     .call(yAxis)
 
   d3.select('svg')
-  .attr('width', w)
-  .attr('height', h)
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", "0 0 600 520")
+  .classed("svg-content", true)
     .selectAll('rect')
     .data(dataSet)
     .enter()
     .append('rect')
     .attr('width', barWidth)
     .attr('height', d => yBarsScale(d[1]))
-    .attr('x', (d, i) => xBarsScale(i))
+    .attr('x', (_, i) => xBarsScale(i))
     .attr('y', d => h - pad - yBarsScale(d[1]))
-    .attr('data-date', d => d[0])
-    .attr('data-gdp', d => d[1])
-    .attr('class', 'bar')
     .on('mouseover', (e, d, i) => {
       tooltip.classList.add('show')
       tooltip.innerHTML = `${d[0]} <br> U$ ${d[1]} billions`
       tooltip.setAttribute('data-date', d[0])
-      tooltip.style.left = e.pageX - 150 + 'px'
-      tooltip.style.top = e.pageY - 100 + 'px'
+      tooltip.style.left = e.clientX + 10 + 'px'
+      tooltip.style.top = e.clientY - 50 + 'px'
     })
     .on('mouseout', () => tooltip.classList.remove('show'))
 
+  d3.select('svg')
+    .append("text")
+    .attr("x", w / 2)
+    .attr("y", pad)
+    .attr("text-anchor", "middle")
+    .style("font-size", "24px")
+    .text("USA GDP");
+
+  d3.select('svg')
+    .append("text")
+    .attr("transform", "translate(" + (w / 2) + " ," + (h - 10) + ")")
+    .style("text-anchor", "middle")
+    .style("font-size", "16px")
+    .text("Year");
+
+  d3.select('svg')
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -(h / 2))
+    .attr("y", 15)
+    .style("text-anchor", "middle")
+    .style("font-size", "16px")
+    .text("GDP");
 }
 
       
