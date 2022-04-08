@@ -9,13 +9,18 @@ req.send()
 
 function main(dataSet) {
 
+  //constants
   const w = 600
   const h = 520
   const pad = 60
   const barWidth = (w - 2 * pad) / dataSet.length
   const convertedDates = dataSet.map(d => new Date(d[0]))
   const tooltip = document.querySelector('.tooltip')
+  const iframeContainer = document.querySelector('.iframe-container')
+  const tooltipLeft = window.getComputedStyle(iframeContainer).width.replace('px', '')
+  const tooltipBottom = window.getComputedStyle(iframeContainer).height.replace('px', '')
 
+  //scales
   const xBarsScale = d3.scaleLinear()
                         .domain([0, dataSet.length - 1])
                         .range([pad, w - pad])
@@ -29,6 +34,7 @@ function main(dataSet) {
                        .domain([0, d3.max(dataSet, d => d[1])])
                        .range([h - pad, pad])
 
+  //axes
   const xAxis = d3.axisBottom(xAxisScale)
   d3.select('svg')
     .append('g')
@@ -41,6 +47,16 @@ function main(dataSet) {
     .attr('transform', 'translate(' + (pad) + ',0)')
     .call(yAxis)
 
+  //title
+  d3.select('svg')
+  .append("text")
+  .attr("x", w / 2)
+  .attr("y", pad)
+  .attr("text-anchor", "middle")
+  .style("font-size", "24px")
+  .text("USA GDP");
+
+  //bars and tooltip
   d3.select('svg')
   .attr("preserveAspectRatio", "xMinYMin meet")
   .attr("viewBox", `0 0 ${w} ${h}`)
@@ -56,20 +72,12 @@ function main(dataSet) {
     .on('mouseover', (e, d, i) => {
       tooltip.classList.add('show')
       tooltip.innerHTML = `${d[0]} <br> U$ ${d[1]} billions`
-      tooltip.setAttribute('data-date', d[0])
-      tooltip.style.left = e.clientX + 10 + 'px'
-      tooltip.style.top = e.clientY - 50 + 'px'
+      tooltip.style.left = e.clientX - (tooltipLeft * 0.15) + 'px'
+      tooltip.style.top = e.clientY - (tooltipBottom * 0.15) + 'px'
     })
     .on('mouseout', () => tooltip.classList.remove('show'))
 
-  d3.select('svg')
-    .append("text")
-    .attr("x", w / 2)
-    .attr("y", pad)
-    .attr("text-anchor", "middle")
-    .style("font-size", "24px")
-    .text("USA GDP");
-
+  //labels
   d3.select('svg')
     .append("text")
     .attr("transform", "translate(" + (w / 2) + " ," + (h - 10) + ")")
