@@ -35,16 +35,19 @@ function main(dataSet) {
                        .range([h - pad, pad])
 
   //axes
-  const xAxis = d3.axisBottom(xAxisScale)
+  const xAxis = d3.axisBottom(xAxisScale)    
   d3.select('svg')
     .append('g')
     .attr('transform', 'translate(0, ' + (h - pad) + ')')
+    .style("font-size", "12px")
     .call(xAxis)
 
   const yAxis = d3.axisLeft(yAxisScale)
+    .tickFormat(d3.format('d'))
   d3.select('svg')
     .append('g')
     .attr('transform', 'translate(' + (pad) + ',0)')
+    .style("font-size", "12px")
     .call(yAxis)
 
   //title
