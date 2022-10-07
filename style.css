@@ -13,8 +13,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 600px;
-  height: 600px;
+  width: 100vw;
+  height: 100vh;
+  max-width: 475px;
+  max-height: 475px;
 }
 
 .responsive-div {    
@@ -53,42 +55,8 @@ body {
     display: flex;
   }
 
-@media (max-width: 1024px) {
-    .iframe-container {
-        width: 560px;
-        height: 560px;
-    }
-
+@media (max-width: 640px) {
     html {
-        font-size: 7px;
-    }
-}
-    
-@media (max-width: 768px) {
-    .iframe-container {
-        width: 420px;
-        height: 420px;
-    }
-}
-
-@media (max-width: 576px) {
-    .iframe-container {
-        width: 350px;
-        height: 350px;
-    }
-
-    html {
-        font-size: 6px;
-    }
-}
-
-@media (max-width: 425px) {
-    .iframe-container {
-        width: 240px;
-        height: 240px;
-    }
-
-    html {
-      font-size: 4px;
+        font-size: 5px;
     }
 }
