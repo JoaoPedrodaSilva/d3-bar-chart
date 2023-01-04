@@ -11,7 +11,7 @@ function main(dataSet) {
 
     //constants
     const w = 600
-    const h = 520
+    const h = 600
     const pad = 70
     const barWidth = (w - 2 * pad) / dataSet.length
     const convertedDates = dataSet.map(d => new Date(d[0]))
